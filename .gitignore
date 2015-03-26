@@ -1,1 +1,5 @@
 *.asv
+output/final/*.bmp
+output/edges/*.bmp
+output/smoothness/*.bmp
+output/*.bmp

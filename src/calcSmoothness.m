@@ -1,6 +1,7 @@
-function s = calcSmoothness(u, v, w)
+function s = calcSmoothness(u, v, w, I1, I2, intThresh)
 if nargin == 2
     w = 5;
+    intThresh = 80;
 end
 if size(u) ~= size(v)
     error('u and v must be the same size');
@@ -17,8 +18,13 @@ sv = zeros(w^2, (size(u,1)-2*w)*(size(u,2)-2*w));
 count = 1;
 for i = 1+lbHalf:size(u,1)-ruHalf
     for j = 1+lbHalf:size(u,2)-ruHalf
-        su(1:end, count) = reshape(u(i-lbHalf:i+ruHalf,j-lbHalf:j+ruHalf), [w^2,1]);
-        sv(1:end, count) = reshape(v(i-lbHalf:i+ruHalf,j-lbHalf:j+ruHalf), [w^2,1]);
+        if I1(i,j) > intThresh || I2(i,j) > intThresh % threshold subject to change
+            su(1:end, count) = zeros(w^2,1);
+            sv(1:end, count) = zeros(w^2,1);
+        else
+            su(1:end, count) = reshape(u(i-lbHalf:i+ruHalf,j-lbHalf:j+ruHalf), [w^2,1]);
+            sv(1:end, count) = reshape(v(i-lbHalf:i+ruHalf,j-lbHalf:j+ruHalf), [w^2,1]);
+        end
         count = count + 1;
     end
 end

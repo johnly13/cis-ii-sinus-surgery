@@ -6,7 +6,7 @@ if nargin == 1
    highPassFactor = 2;
    boost = 0.3;
    filter = fspecial('gaussian', 50, 15);
-   thresh = 0;
+   thresh = 0.0;
    sigma = 10;
    edgeType = 'canny';
 end

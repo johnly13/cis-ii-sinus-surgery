@@ -43,7 +43,7 @@ elseif size(uInitial,1) ==0 || size(vInitial,1)==0
     vInitial = zeros(size(im2(:,:,1)));
 end
 if nargin<7
-    displayFlow=1;
+    displayFlow=0;
 end
 if nargin<8
     displayImg=im1;

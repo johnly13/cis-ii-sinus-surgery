@@ -3,3 +3,6 @@ output/final/*.bmp
 output/edges/*.bmp
 output/smoothness/*.bmp
 output/*.bmp
+.DS_Store
+input/*.bmp
+*~

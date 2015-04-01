@@ -19,19 +19,21 @@ I1 = imread(fullfile('input', strcat(imageHeader, iStr, imageType)));
 I2 = imread(fullfile('input', strcat(imageHeader, iNextStr, imageType)));
 
 %Preprocess images for HS
-filter = fspecial('gaussian', 60, 20);
+filter = fspecial('gaussian', 20, 15);
 
 blur1 = imfilter(I1, filter);
 blur2 = imfilter(I2, filter);
+% blur1 = medfilt2(rgb2gray(I1), [15 15]);
+% blur2 = medfilt2(rgb2gray(I2), [15 15]);
 
 %Perform HS on blurred images
-[u, v] = HS(blur1, blur2, 15);
+[u, v] = HS(blur1, blur2, 20);
 
 %Calcuate smoothness based on optical flow
-s = calcSmoothness(u, v, I1, I2, 15, 95);
+s = calcSmoothness(u, v, I1, I2, 20, 95);
 
 %Combine edges from both image
-edges = findEdges(I1) ;%| findEdges(I2);
+edges = findEdges(blur1) ;%| findEdges(I2);
 
 %Output on screen and to disk
 
@@ -42,23 +44,24 @@ elseif mean(mean(s))/max(max(s)) < 0.02
 else
     thresh = 0.052;
 end
+thresh = 0.0375;
 output = s ./ max(max(s)) > thresh & edges;
 
 warning('off','all');
 fprintf('%d: max: %f, mean: %f, mean/max: %f\n',i,  max(max(s)), mean(mean(s)), mean(mean(s))/max(max(s)));
 
-%imwrite(edges, fullfile(edgeHeader, strcat(imageHeader, iStr,'-',iNextStr,imageType)));
-%imwrite(s*20, fullfile(smoothHeader, strcat(imageHeader, iStr,'-',iNextStr,imageType)));
+imwrite(edges, fullfile(edgeHeader, strcat(imageHeader, iStr,'-',iNextStr,imageType)));
+imwrite(s*5, fullfile(smoothHeader, strcat(imageHeader, iStr,'-',iNextStr,imageType)));
 
 E = rgb2gray(I1);
 color = cat(3, zeros(size(E)), ones(size(E)), ones(size(E)));
-imshow(E, 'initialMag', 100);
+imshow(I1, 'initialMag', 100);
 hold on;
 h = imshow(color); 
 hold off
 set(h, 'AlphaData', output);
 saveas(f, fullfile(finalHeader, strcat(imageHeader, iStr,'-',iNextStr,imageType)));
-% imwrite(output, fullfile(finalHeader, strcat(imageHeader, iStr,'-',iNextStr,imageType)));
+%imwrite(output, fullfile(finalHeader, strcat(imageHeader, iStr,'-',iNextStr,imageType)));
 pause(0.01);
 
 end

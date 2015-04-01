@@ -59,6 +59,7 @@ end
 su = stdfilt(u, ones(w));
 sv = stdfilt(v, ones(w));
 mask = I1 < intThresh & I2 < intThresh;
+
 s = (su + sv)/2.*mask;
 
 end

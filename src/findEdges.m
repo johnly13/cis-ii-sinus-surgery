@@ -6,9 +6,9 @@ if nargin == 1
    highPassFactor = 2;
    boost = 0.3;
    filter = fspecial('gaussian', 30, 10);
-   thresh = 0.005;
+   thresh = 0.0055;
    sigma = 10;
-   edgeType = 'sobel';
+   edgeType = 'Roberts';
 end
 if size(I,3) == 3
     grayIm = rgb2gray(I);

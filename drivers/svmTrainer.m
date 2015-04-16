@@ -1,5 +1,6 @@
 %File name constants
 %Make sure to change directory to cis-ii-sinus-surgery sandbox directory
+close all;
 imageHeader = 'rec-000098';
 imageType = '.bmp';
 labeledImageType = '.png';
@@ -23,14 +24,16 @@ featureEdgeCoords = find(predictedLabels == 1);
 featureEdges = edgeCoords(featureEdgeCoords);
 testFeatures = zeros(size(edges));
 testFeatures(featureEdges) = 1;
-imshow(testFeatures);
+
 
 % Find features labeled with 0 (not an occluding contour)
 nonFeatureEdgeCoords = find(predictedLabels == 0);
 nonFeatureEdges = edgeCoords(nonFeatureEdgeCoords);
 testNonFeatures = zeros(size(edges));
 testNonFeatures(nonFeatureEdges) = 1;
-imshow(testNonFeatures);
+figure;
+imshow([testFeatures, testNonFeatures]);
+title('Test Features vs. NonFeatures');
 
 % Visualize support vectors
 % sv = svm.SupportVectors;

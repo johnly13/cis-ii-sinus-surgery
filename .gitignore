@@ -6,3 +6,6 @@ output/*.bmp
 .DS_Store
 input/*.bmp
 *~
+*.psd
+*.db
+output/desktop.ini

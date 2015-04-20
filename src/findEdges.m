@@ -6,10 +6,11 @@ if nargin == 1
    highPassFactor = 2;
    boost = 0.3;
    filter = fspecial('gaussian', 30, 10);
-   thresh = 0.0055;
+   thresh = 0.005;
    sigma = 10;
    edgeType = 'Roberts';
 end
+I = imfilter(I, fspecial('gaussian', 25, 15));
 if size(I,3) == 3
     grayIm = rgb2gray(I);
 else

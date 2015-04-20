@@ -5,7 +5,7 @@ function [svm, trainingFeatures, trainingLabels] = trainSVM(I, trainingPoints)
 
 trainingFeatures = extractFeatures(I, trainingPoints);
 trainingLabels = ones(size(trainingFeatures, 1), 1);
-nonFeatureEdges = findEdges(I) & ~trainingPoints;
+nonFeatureEdges = findEdges(imfilter(I, fspecial('gaussian', 25, 15))) & ~trainingPoints;
 nonFeatures = extractFeatures(I, nonFeatureEdges);
 trainingFeatures = [trainingFeatures ; nonFeatures];
 trainingLabels = [trainingLabels ; zeros(size(nonFeatures,1), 1)];

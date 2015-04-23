@@ -9,12 +9,13 @@ if nargin == 1
     points = findEdges(I);
 end
 if size(I,3) == 3
-   grayIm = rgb2gray(I); 
+   grayIm = im2double(rgb2gray(I)); 
 end
 
 % Current features: x gradient, y gradient, gradient magnitude
 [gX, gY] = imgradientxy(grayIm);
 gMag = imgradient(grayIm);
+imshow([gX, gY]);
 
 gX = gX(points);
 gY = gY(points);

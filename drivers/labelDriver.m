@@ -13,9 +13,9 @@ red = I1(:,:,1);
 
 red_highC = imadjust(red,[0 0.7],[0 1]);
 
-thresh = .006;
+thresh = .005;
 
-edges = findEdges(red_highC, 0, 0, 0, fspecial('gaussian', 10, 2), ...
+edges = findEdges(red_highC, 0, 0, 0, fspecial('gaussian', 20, 4), ...
     thresh, 0, 'Roberts');
 
 imshow(imfuse(red_highC, edges));

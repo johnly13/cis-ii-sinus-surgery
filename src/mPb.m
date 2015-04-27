@@ -7,7 +7,7 @@ imageSize = size(images(:,:,1));
 [centerIndex(:,2), centerIndex(:,1)] = find(points);
 
 %narrow sampled points
-numToSkip = 0;
+numToSkip = 2;
 numOfAngles = 8;
 %
 

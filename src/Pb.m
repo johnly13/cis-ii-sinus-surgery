@@ -4,7 +4,7 @@
 function [variance] = Pb(theta, center, image)
 
 %Variables
-radius = 5;
+radius = 20;
 binNumber = 25;
 %
 
@@ -45,32 +45,40 @@ tIndex = find(topPixels);
 bIndex = find(bottomPixels);
 tValue = im2double(image(tIndex));
 bValue = im2double(image(bIndex));
-
-[tCounts, tCenters] = hist(tValue, binNumber);
+xBins = 0:1/(binNumber-1):1;
+[tCounts, tCenters] = hist(tValue, xBins);
 tCounts = tCounts/sum(tCounts);
-[bCounts, bCenters] = hist(bValue, binNumber);
+[bCounts, bCenters] = hist(bValue, xBins);
 bCounts = bCounts/sum(bCounts);
 for i = 1:binNumber
-    variance = variance + (((tCounts(i) - bCounts(i))^2) / (tCounts(i) + bCounts(i)))*.5;
+    if tCounts(i) + bCounts(i) == 0
+    else
+        variance = variance + (((tCounts(i) - bCounts(i))^2) / (tCounts(i) + bCounts(i)))*.5;
+    end
 end
 
 
 %% display
-% histogram(tValue,binNumber);
-% hold on;
-% histogram(bValue,binNumber);
-% 
-% figure;
-% E = image;
-% color = cat(3, zeros(size(E)), ones(size(E)), ones(size(E)));
-% imshow(image, 'initialMag', 100);
-% hold on;
-% h = imshow(color); 
-% set(h, 'AlphaData', topPixels);
-% hold off;
-% 
-% hold on;
-% color = cat(3, ones(size(E)), zeros(size(E)), ones(size(E)));
-% h1 = imshow(color); 
-% set(h1, 'AlphaData', bottomPixels);
+close all;
+paddedA = NaN(max(length(tValue), length(bValue)), 1);
+paddedB = NaN(max(length(tValue), length(bValue)), 1);
+paddedA(1:length(tValue)) = tValue;
+paddedB(1:length(bValue)) = bValue;
+
+hist([paddedA paddedB],xBins);
+hold on;
+
+figure;
+E = image;
+color = cat(3, zeros(size(E)), ones(size(E)), ones(size(E)));
+imshow(image, 'initialMag', 100);
+hold on;
+h = imshow(color); 
+set(h, 'AlphaData', topPixels);
+hold off;
+
+hold on;
+color = cat(3, ones(size(E)), zeros(size(E)), ones(size(E)));
+h1 = imshow(color); 
+set(h1, 'AlphaData', bottomPixels);
 end

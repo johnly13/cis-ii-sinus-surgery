@@ -1,6 +1,6 @@
 function points = extractLearningSet(labeledImage, color)
 if nargin == 1
-    color = [0, 254, 253];
+    color = [0, 245, 245];
 end
 I = labeledImage;
 points = I(1:end,1:end,1) == color(1) & ...

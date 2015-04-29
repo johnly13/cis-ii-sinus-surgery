@@ -20,5 +20,6 @@ imshow([gX, gY]);
 gX = gX(points);
 gY = gY(points);
 gMag = gMag(points);
+gMag = gMag./max(max(gMag));
 features = [gX, gY, gMag];
 end

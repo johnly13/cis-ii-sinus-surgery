@@ -10,7 +10,6 @@ if nargin == 1
 end
 r = 16;
 bnum = 16;
-
 % Current features: hue, saturation, value (intensity)
 Ib = rgb2gray(I);
 sz = size(Ib);
@@ -31,5 +30,8 @@ for i = 1:length(edgepts)
     count = count + 1;
     disp(i);
 end
-features = hists;
+gMag = imgradient(Ib);
+gMag = gMag(points);
+gMag = gMag./max(max(gMag));
+features = [hists gMag];
 end

@@ -9,24 +9,20 @@ if nargin == 1
     points = findEdges(I);
 end
 r = 16;
-bnum = ;
-
+bnum = 16;
 % Current features: hue, saturation, value (intensity)
 Ib = rgb2gray(I);
 sz = size(Ib);
-[xg, yg] = meshgrid(1:sz(2), 1:sz(1));
 edgepts = find(points > 0);
 hists = zeros(floor(length(edgepts)), bnum);
 count = 1;
+mask = uint8(fspecial('disk',r)~=0);
 for i = 1:length(edgepts)
-    [x0,y0] = ind2sub(size(Ib),edgepts(i));
-    x = xg - x0;
-    y = yg - y0;
-    cmask = x.^2 + y.^2 <= r.^2;
-    cimg = double(Ib) .* cmask;
-    cpix = cimg > 0;
-    intensities = cimg(cpix);
-    h = hist(intensities, bnum);
+    [y,x] = ind2sub(size(Ib),edgepts(i));
+    window = cropImg(Ib,x,y,r,mask);
+    w = double(window(:));
+    h = hist(w,bnum);
+    h = h/sum(h);
     hists(count,:) = h;
     count = count + 1;
     disp(i);

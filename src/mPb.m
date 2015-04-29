@@ -15,7 +15,8 @@ centerIndex = centerIndex(1:numToSkip+1:size(centerIndex,1), :);
 index = sub2ind(imageSize, centerIndex(:,2), centerIndex(:,1));
 
 
-
+%iterate through each theta and each channel and find greatest chi square
+%distance
 channels = size(images,3);
 theta = 0:(180/numOfAngles):180;
 out = zeros(imageSize);

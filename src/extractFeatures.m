@@ -12,14 +12,9 @@ if size(I,3) == 3
    grayIm = im2double(rgb2gray(I)); 
 end
 
-% Current features: x gradient, y gradient, gradient magnitude
-[gX, gY] = imgradientxy(grayIm);
-gMag = imgradient(grayIm);
-imshow([gX, gY]);
-
-gX = gX(points);
-gY = gY(points);
-gMag = gMag(points);
-gMag = gMag./max(max(gMag));
-features = [gX, gY, gMag];
+scaledGradient = extractFeaturesScaledGrad(grayIm, points);
+histBox = extractFeaturesHistBox(grayIm, points);
+hist = extractFeaturesHist(grayIm, points);
+mPb = extractMPb(grayIm, points);
+features = [scaledGradient; histBox; hist; mPb];
 end

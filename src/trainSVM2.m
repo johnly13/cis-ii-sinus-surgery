@@ -3,7 +3,7 @@ function [svm, trainingFeatures, trainingLabels] = trainSVM2(I, true_set, false_
 trainingFeatures = extractFeatures2(I, true_set);
 trainingLabels = ones(size(trainingFeatures, 1), 1);
 
-nonFeatures = extractFeatures2(I, false_set);
+nonFeatures = extractMPb(I, false_set);
 trainingFeatures = [trainingFeatures ; nonFeatures];
 
 trainingLabels = [trainingLabels ; zeros(size(nonFeatures,1), 1)];

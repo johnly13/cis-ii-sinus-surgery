@@ -33,5 +33,5 @@ end
 gMag = imgradient(Ib);
 gMag = gMag(points);
 gMag = gMag./max(max(gMag));
-features = [hists gMag];
+features = [hists]; %gMag];
 end

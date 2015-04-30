@@ -1,4 +1,4 @@
-function [features, points] = extractFeatures2(I, points)
+function [features, points] = extractMPb(I, points)
 % Extracts a set of features from an image at the given points
 % I = the given image
 % points = a binary array that signifies which points in I to extract

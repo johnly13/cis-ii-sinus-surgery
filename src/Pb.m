@@ -37,13 +37,8 @@ bottom = pixelIndex(position <= 0, :);
 topPixels = zeros(imageSize);
 bottomPixels = zeros(imageSize);
 
-% can be made more efficient if linear indexing is used
-for i = 1:size(top,1)
-    topPixels(top(i,1), top(i,2)) = 1;
-end
-for i = 1:size(bottom,1)
-    bottomPixels(bottom(i,1),bottom(i,2)) = 1;
-end
+topPixels(sub2ind(size(topPixels), top(:,1), top(:,2))) = 1;
+bottomPixels(sub2ind(size(bottomPixels), bottom(:,1), bottom(:,2))) = 1;
 
 %compute gradient
 tIndex = find(topPixels);

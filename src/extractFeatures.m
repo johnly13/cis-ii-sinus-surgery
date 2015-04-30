@@ -13,8 +13,7 @@ if size(I,3) == 3
 end
 
 scaledGradient = extractFeaturesScaledGrad(grayIm, points);
-histBox = extractFeaturesHistBox(grayIm, points);
 hist = extractFeaturesHist(grayIm, points);
 mPb = extractMPb(grayIm, points);
-features = [scaledGradient; histBox; hist; mPb];
+features = [scaledGradient; hist; mPb];
 end

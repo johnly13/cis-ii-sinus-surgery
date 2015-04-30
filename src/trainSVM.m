@@ -3,9 +3,9 @@ function [svm, trainingFeatures, trainingLabels] = trainSVM(I1, I2, I3, training
 % I = the original image
 % trainingPoints = a binary array of ground truth points
 
-trainingFeatures1 = extractFeaturesHist(I1, trainingPoints1);
-trainingFeatures2 = extractFeaturesHist(I2, trainingPoints2);
-trainingFeatures3 = extractFeaturesHist(I3, trainingPoints3);
+trainingFeatures1 = extractFeatures(I1, trainingPoints1);
+trainingFeatures2 = extractFeatures(I2, trainingPoints2);
+trainingFeatures3 = extractFeatures(I3, trainingPoints3);
 trainingFeatures = [trainingFeatures1 ; trainingFeatures2; trainingFeatures3];
 trainingLabels = ones(size(trainingFeatures, 1), 1);
 nonFeatureEdges1 = findEdges(I1) & ~trainingPoints1;

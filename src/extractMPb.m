@@ -19,11 +19,9 @@ end
 % gY = gY(points);
 % gMag = gMag(points);
 
-tic;
-multiPb = mPb(I, points);
-toc;
-%load('multiPb img20.mat');
-%multiPb = multiPb2;
-%multiPb = multiPb(points);
+%multiPb = mPb(I, points);
+load('multiPb img20.mat');
+multiPb = multiPb3;
+multiPb = multiPb(points);
 features = multiPb;
 end

@@ -1,14 +1,9 @@
-function [features, points] = extractFeaturesScaledGrad(I, points, scales)
+function [features, points] = extractFeaturesScaledGrad(I, points, scale)
 
 if nargin == 2
-   scales = 0:0.25:1; 
+   scale = 0.05; 
 end
-gradient = imgradient(I);
-for scale = scales
-    if scale ~= 1
-        scaledGradient = imgradient(imresize(I, scale));
-        gradient = gradient + scaledGradient/scale;
-    end
-end 
+gradient = imgradient(imresize(I, scale));
+gradient = imresize(gradient, 1/scale, 'lanczos3');
 features = gradient(points);
 end

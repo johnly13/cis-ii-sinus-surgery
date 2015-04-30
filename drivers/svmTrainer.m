@@ -24,7 +24,7 @@ trainingSetPoints3 = extractLearningSet(labeled3);
 
 % Evaluate using a separate image
 disp('Evaluating using separate image');
-[features, edges] = extractFeaturesHist(I0);
+[features, edges] = extractFeatures(I0);
 predictedLabels = predict(svm, features);
 
 % Find features labeled with 1 (occluding contour)

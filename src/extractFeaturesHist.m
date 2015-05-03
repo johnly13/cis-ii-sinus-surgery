@@ -12,7 +12,6 @@ r = 16;
 bnum = 16;
 % Current features: hue, saturation, value (intensity)
 Ib = rgb2gray(I);
-sz = size(Ib);
 edgepts = find(points > 0);
 hists = zeros(floor(length(edgepts)), bnum);
 count = 1;
@@ -22,7 +21,7 @@ for i = 1:length(edgepts)
     window = cropImg(Ib,x,y,r,mask);
     w = double(window(:));
     h = hist(w,bnum);
-    h = h/sum(h);
+    h = h/max(h);
     hists(count,:) = h;
     count = count + 1;
     disp(i);

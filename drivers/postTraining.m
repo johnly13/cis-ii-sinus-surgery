@@ -2,6 +2,9 @@ close all;
 imageHeader = 'rec-000098';
 imageType = '.bmp';
 I0 = imread(fullfile('input', strcat(imageHeader, '35', imageType)));
+disp('Evaluating using separate image');
+[features, edges] = extractFeatures(I0);
+predictedLabels = predict(svm, features);
 % Find features labeled with 1 (occluding contour)
 disp('Finding features labeled with 1');
 edgeCoords = find(edges == 1);

@@ -1,4 +1,5 @@
 close all;
+warning('off','all');
 tic;
 imageHeader = 'rec-000098';
 imageType = '.bmp';

@@ -24,7 +24,6 @@ for i = 1:length(edgepts)
     h = h/max(h);
     hists(count,:) = h;
     count = count + 1;
-    disp(i);
 end
 features = hists;
 end

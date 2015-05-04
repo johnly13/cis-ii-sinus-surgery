@@ -30,9 +30,10 @@ for i = 1:1
 %     d = imdilate(d, se);
 end
 morph = bwmorph(d,'thin',inf);
+morph = bwmorph(morph, 'clean');
 trueDist = bwdist(trueFeatures);
 trueDist(~morph) = 0;
-sumDist = sum(sum(trueDist));
+avgDist = sum(sum(trueDist))/size(find(morph==1),1);
 
 imshow(morph);
 [normals,x,y] = getNorms(morph);

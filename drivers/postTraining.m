@@ -3,8 +3,11 @@ tic;
 imageHeader = 'rec-000098';
 imageType = '.bmp';
 I0 = imread(fullfile('input', strcat(imageHeader, '35', imageType)));
+labeled0 = imread(fullfile('input', strcat('labeled-', imageHeader, '35', '.png')));
 disp('Evaluating using separate image');
 [features, edges] = extractFeatures(I0);
+trueFeatures = extractLearningSet(labeled0);
+
 predictedLabels = predict(svm, features);
 % Find features labeled with 1 (occluding contour)
 disp('Finding features labeled with 1');
@@ -13,7 +16,6 @@ featureEdgeCoords = find(predictedLabels == 1);
 featureEdges = edgeCoords(featureEdgeCoords);
 testFeatures = zeros(size(edges));
 testFeatures(featureEdges) = 1;
-
 
 % Find features labeled with 0 (not an occluding contour)
 % disp('Finding features labeled with 0');
@@ -28,6 +30,11 @@ for i = 1:1
 %     d = imdilate(d, se);
 end
 morph = bwmorph(d,'thin',inf);
+trueDist = bwdist(trueFeatures);
+trueDist(~morph) = 0;
+sumDist = sum(sum(trueDist));
+
+imshow(morph);
 [normals,x,y] = getNorms(morph);
 figure;
 imshow(morph);

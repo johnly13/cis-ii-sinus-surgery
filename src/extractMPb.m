@@ -12,16 +12,9 @@ if size(I,3) == 3
    I = rgb2gray(I); 
 end
 
-% Current features: x gradient, y gradient, gradient magnitude
-% [gX, gY] = imgradientxy(I);
-% gMag = imgradient(I);
-% gX = gX(points);
-% gY = gY(points);
-% gMag = gMag(points);
-
-%multiPb = mPb(I, points);
-load('multiPb img20.mat');
-multiPb = multiPb3;
+multiPb = mPb(I, points);
+%load('multiPb img20.mat');
+%multiPb = multiPb3;
 multiPb = multiPb(points);
 features = multiPb;
 end

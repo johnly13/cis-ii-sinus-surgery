@@ -32,5 +32,5 @@ procIm = medfilt2(grayIm, [15 15]);
 %Default threshold: 0
 %Default sigma value: 10
 
-edges = edge(procIm, edgeType, thresh);%, sigma);
+edges = edge(procIm, edgeType);%, thresh);%, sigma);
 end

@@ -9,6 +9,7 @@ radius = 20;
 binNumber = 25;
 %
 
+binSize = (0: 1/(binNumber-1):1);
 imageSize = size(image);
 x = center(1);
 y = center(2);
@@ -27,10 +28,9 @@ bValue = cropImg(image, x, y, rad, botMask);
 tValue(tValue == 0) = NaN;
 bValue(bValue == 0) = NaN;
 
-xBins = 0:1/(binNumber-1):1;
-[tCounts, ~] = hist(tValue, xBins);
+[tCounts, ~] = hist(tValue, binSize);
 tCounts = tCounts/sum(tCounts);
-[bCounts, ~] = hist(bValue, xBins);
+[bCounts, ~] = hist(bValue, binSize);
 bCounts = bCounts/sum(bCounts);
 for i = 1:binNumber
     %only evalutes nonzero denominators

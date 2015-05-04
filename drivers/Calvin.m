@@ -5,9 +5,10 @@ imageType = '.bmp';
 labeledImageType = '.png';
 outputHeader = fullfile('output');
 inputHeader = fullfile('input');
-I1 = imread(fullfile('input', strcat(imageHeader, '20', imageType)));
+image1 = '20';
+I1 = imread(fullfile('input', strcat(imageHeader, image1, imageType)));
 I2 = imread(fullfile('input', strcat(imageHeader, '22', imageType)));
-I3 = imread(fullfile('input', strcat(imageHeader, '20-edges', labeledImageType)));
+I3 = imread(fullfile('input', strcat(imageHeader, image1,'-edges', labeledImageType)));
 
 
 figure;
@@ -46,15 +47,17 @@ color = cat(3, ones(size(E)), zeros(size(E)), ones(size(E)));
 h1 = imshow(color); 
 set(h1, 'AlphaData', false_edges);
 
+%output = mPb(red_highC,edges);
+
 %% svm
 %[svm, trainingFeatures, trainingLabels] = trainSVM2(red_highC, true_edges, false_edges);
-load('svm img20_2.mat');
-sv = svm.SupportVectors;
-figure
-gscatter(trainingFeatures(:,1),trainingLabels)
-hold on
-%plot(sv(:,1), sv(:,2),'ko','MarkerSize',10)
-legend('0','1','Support Vector')
-hold off
-
-runSVM(red_highC,  edges, svm);
+% load('svm img20_2.mat');
+% sv = svm.SupportVectors;
+% figure
+% gscatter(trainingFeatures(:,1),trainingLabels)
+% hold on
+% %plot(sv(:,1), sv(:,2),'ko','MarkerSize',10)
+% legend('0','1','Support Vector')
+% hold off
+% 
+% runSVM(red_highC,  edges, svm);

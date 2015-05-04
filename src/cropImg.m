@@ -6,12 +6,21 @@ function crop = cropImg(img, x, y, rad, mask)
         y = floor(sz(1)/2);
         rad = 8;
         mask = uint8(fspecial('disk',rad)~=0);
+    elseif nargin == 4
+        mask = uint8(fspecial('disk',rad)~=0);       
     end
     x0 = x - rad;
     x1 = x + rad;
     y0 = y - rad;
     y1 = y + rad;
-    mat = uint8(zeros(2*rad + 1));
+    
+
+    if isa(mask,'uint8')
+        mat = uint8(zeros(2*rad + 1));
+    else
+        mat = zeros(2*rad + 1);
+    end
+    
     if x0 < 1 && y0 < 1
         xoff = -x0 + 1;
         yoff = -y0 + 1;

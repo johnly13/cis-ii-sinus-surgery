@@ -23,28 +23,7 @@ trainingSetPoints3 = extractLearningSet(labeled3);
 [svm, trainingFeatures, trainingLabels] = trainSVM(I1, I2, I3, trainingSetPoints1, trainingSetPoints2, trainingSetPoints3);
 
 % Evaluate using a separate image
-disp('Evaluating using separate image');
-[features, edges] = extractFeatures(I0);
-predictedLabels = predict(svm, features);
-
-% Find features labeled with 1 (occluding contour)
-disp('Finding features labeled with 1');
-edgeCoords = find(edges == 1);
-featureEdgeCoords = find(predictedLabels == 1);
-featureEdges = edgeCoords(featureEdgeCoords);
-testFeatures = zeros(size(edges));
-testFeatures(featureEdges) = 1;
-
-
-% Find features labeled with 0 (not an occluding contour)
-disp('Finding features labeled with 0');
-nonFeatureEdgeCoords = find(predictedLabels == 0);
-nonFeatureEdges = edgeCoords(nonFeatureEdgeCoords);
-testNonFeatures = zeros(size(edges));
-testNonFeatures(nonFeatureEdges) = 1;
-figure;
-imshow([testFeatures, testNonFeatures]);
-title('Test Features vs. NonFeatures');
+postTraining;
 
 % Visualize support vectors
 % sv = svm.SupportVectors;

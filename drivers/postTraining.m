@@ -1,4 +1,5 @@
 close all;
+tic;
 imageHeader = 'rec-000098';
 imageType = '.bmp';
 I0 = imread(fullfile('input', strcat(imageHeader, '35', imageType)));
@@ -31,7 +32,7 @@ morph = bwmorph(d,'thin',inf);
 figure;
 imshow(morph);
 hold on;
-xoff = 0:.1:1;
+xoff = -0.2:.1:0.2;
 for i = 1:length(normals)
     xplot = x(i) + xoff;
     yplot = normals(i).*xoff + y(i);
@@ -39,3 +40,4 @@ for i = 1:length(normals)
 end
 hold off;
 title('Test Features vs. NonFeatures');
+toc;

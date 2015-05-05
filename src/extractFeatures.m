@@ -6,7 +6,12 @@ function [features, points] = extractFeatures(I, points)
 
 if nargin == 1
     % If no points given, use results of our edge detection algorithm as points
-    points = findEdges(I);
+    filter = fspecial('gaussian', 20, 4);
+    thresh = 0;
+    red = I(:,:,1);
+    red_highC = imadjust(red,[0 0.7],[0 1]);
+    points = findEdges(red_highC, 0, 0, 0, filter, ...
+    thresh, 0, 'Canny');
 end
 if size(I,3) == 3
    grayIm = im2double(rgb2gray(I)); 

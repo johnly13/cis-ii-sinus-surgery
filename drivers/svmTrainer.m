@@ -7,20 +7,27 @@ imageType = '.bmp';
 labeledImageType = '.png';
 outputHeader = fullfile('output');
 inputHeader = fullfile('input');
-I1 = imread(fullfile('input', strcat(imageHeader, '20', imageType)));
-I2 = imread(fullfile('input', strcat(imageHeader, '47', imageType)));
-I3 = imread(fullfile('input', strcat(imageHeader, '69', imageType)));
-I0 = imread(fullfile('input', strcat(imageHeader, '35', imageType)));
-labeled1 = imread(fullfile('input', strcat('labeled-', imageHeader, '20', labeledImageType)));
-labeled2 = imread(fullfile('input', strcat('labeled-', imageHeader, '47', labeledImageType)));
-labeled3 = imread(fullfile('input', strcat('labeled-', imageHeader, '69', labeledImageType)));
+N = 10;
+xdim = 1280; ydim = 1024; nIchnl = 3; nLchnl = 1;
+I = uint8(zeros(ydim,xdim,nIchnl,N));
+L = uint8(zeros(ydim,xdim,nLchnl,N));
+for i = 1:N
+    imnum = 15 + 5*i;
+    imstr = num2str(imnum);
+    Itemp = imread(fullfile('input', strcat(imageHeader, imstr, imageType)));
+    Ltemp = imread(fullfile('labeled', strcat('labeled-', imageHeader, imstr, labeledImageType)));
+    I(:,:,:,i) = Itemp;
+    L(:,:,:,i) = Ltemp;
+end
+I0 = imread(fullfile('input', strcat(imageHeader, '47', imageType)));
 
 % Train SVM on hand labeled image
 disp('Training on hand labeled image');
-trainingSetPoints1 = extractLearningSet(labeled1);
-trainingSetPoints2 = extractLearningSet(labeled2);
-trainingSetPoints3 = extractLearningSet(labeled3);
-[svm, trainingFeatures, trainingLabels] = trainSVM(I1, I2, I3, trainingSetPoints1, trainingSetPoints2, trainingSetPoints3);
+TSP = logical(zeros(ydim,xdim,N));
+for i = 1:N
+    TSP(:,:,i) = extractLearningSet(L(:,:,:,i));
+end
+[svm, trainingFeatures, trainingLabels] = trainSVM(I, TSP);
 
 % Evaluate using a separate image
 postTraining;

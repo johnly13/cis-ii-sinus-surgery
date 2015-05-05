@@ -5,10 +5,9 @@ if nargin == 1
    lowPassFactor = 0.3;
    highPassFactor = 2;
    boost = 0.3;
-   filter = fspecial('gaussian', 25, 15);
-   thresh = 0.005;
-   sigma = 10;
-   edgeType = 'Roberts';
+   filter = fspecial('gaussian', 20, 4);
+   thresh = 0;
+   edgeType = 'C';
 end
 I = imfilter(I, filter);
 if size(I,3) == 3
@@ -32,5 +31,5 @@ procIm = medfilt2(grayIm, [15 15]);
 %Default threshold: 0
 %Default sigma value: 10
 
-edges = edge(procIm, edgeType);%, thresh);%, sigma);
+edges = edge(procIm, edgeType);
 end

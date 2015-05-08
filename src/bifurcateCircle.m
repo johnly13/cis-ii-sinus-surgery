@@ -1,5 +1,14 @@
-%creates 2 semicircle masks for Pb
+% bifurcateCircle.m
+% Creates 2 semicircle masks
+% INPUT:
+% theta = angle in degrees of bifurcation
+% rad = radius in pixels of disk
+% OUTPUT:
+% topMask = binary mask of the top half of the disk
+% bottomMask = binary mask of the bottom half of the disk
+
 function [topMask, bottomMask] = bifurcateCircle(theta, rad)
+
     theta = deg2rad(theta);
     mask = fspecial('disk',rad)~=0;
     pixelIndex = find(mask);

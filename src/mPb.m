@@ -1,3 +1,12 @@
+% mPb.m
+% Calulates local edge strength for an image at all edge points using a 
+% range of bifurcation angles
+% INPUT:
+% image = mono-color image to be processed
+% points = matrix of edge points to evaluate at
+% OUTPUT:
+% PbArray = local edge strength map
+
 function [PbArray] = mPb(image, points)
 tic;
 

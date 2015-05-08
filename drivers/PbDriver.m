@@ -1,4 +1,6 @@
-%Calvin Driver
+% PbDriver.m
+% Driver to evaluate local edge strength value
+
 close;
 imageHeader = 'rec-000098';
 imageType = '.bmp';

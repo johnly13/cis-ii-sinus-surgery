@@ -1,4 +1,14 @@
-% multiple linear dilations
+% cropImg.m
+% Crops the image using a mask
+% INPUT:
+% img = image
+% x = x coordinate of center of mask
+% y = y coordinate of center of mask
+% rad: radius in pixels of mask
+% mask = binary mask to determine which places to cut
+% OUTPUT:
+% crop = cropped image
+
 function crop = cropImg(img, x, y, rad, mask)
     sz = size(img);
     if nargin < 2

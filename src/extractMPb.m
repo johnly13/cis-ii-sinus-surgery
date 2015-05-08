@@ -1,8 +1,14 @@
-function [features, points] = extractMPb(I, points)
-% Extracts a set of features from an image at the given points
-% I = the given image
+% extractMPb.m
+% Extracts the local edge strength for SVM
+% INPUT:
+% I = the given RGB image
 % points = a binary array that signifies which points in I to extract
 % features from
+% OUTPUT:
+% features = feature vector
+% points = point vector
+
+function [features, points] = extractMPb(I, points)
 
 if nargin == 1
     % If no points given, use results of our edge detection algorithm as points

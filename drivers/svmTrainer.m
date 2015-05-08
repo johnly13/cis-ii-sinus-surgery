@@ -1,4 +1,6 @@
-tic;
+% svmTrainer.m
+% Driver to train the SVM
+
 %File name constants
 %Make sure to change directory to cis-ii-sinus-surgery sandbox directory
 close all;
@@ -56,4 +58,3 @@ postTraining;
 % set(h1, 'AlphaData', edges);
 % edges = E(svm>=1);
 
-toc

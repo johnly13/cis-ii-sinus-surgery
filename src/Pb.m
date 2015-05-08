@@ -1,5 +1,14 @@
-%Pb
-%if pixel coordinates are out of bounds, returns variance of 0
+% Pb.m
+% Calculates local edge strength
+% INPUT:
+% topMask = binary mask for one histogram (at a given angle)
+% botMask = binary mask for second histogram (at a given angle)
+% center = center coordinates
+% image = image
+% OUTPUT:
+% variance = edge strength value
+
+%If pixel coordinates are out of bounds, returns variance of 0
 %center: [x y] coordinates of point to investigate
 %theta: bifurcating angle in degrees
 function [variance] = Pb(topMask, botMask, center, image)

@@ -1,5 +1,14 @@
+% getNorms.m
+% Computes normal vectors for a given point on an edge
+% INPUT:
+% points = binary array of points
+% OUTPUT:
+% norms = normal vectors
+% xpos = xposition of vector origin
+% ypos = yposition of vector origin
+
 function [norms, xpos, ypos] = getNorms(points)
-    points = uint8(points);
+points = uint8(points);
     r = 8;
     edgepts = find(points > 0);
     mask = uint8(fspecial('disk',r)~=0);

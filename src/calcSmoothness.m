@@ -1,3 +1,15 @@
+% calcSmoothness.m
+% Calculates smoothness from optical flow vectors
+% INPUT:
+% u = x-direction optical flow vector
+% v = y-direction optical flow vector
+% I1 = first image
+% I2 = second image
+% w = width
+% intThresh = threshold
+% OUTPUT:
+% s = smoothness map
+
 function s = calcSmoothness(u, v, I1, I2, w, intThresh)
 if nargin == 4
     w = 5;

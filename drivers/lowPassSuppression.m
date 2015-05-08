@@ -1,3 +1,7 @@
+% lowPassSuppression.m
+% Driver to adjust image low intensity pixel values and compute basic edge
+% detection
+
 close all;
 figure;
 %Images 20-69

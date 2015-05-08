@@ -1,7 +1,14 @@
-function [svm, trainingFeatures, trainingLabels] = trainSVM(I, TSP)
+% trainSVM.m
 % Trains an SVM based on an edges in an image and a training set of points 
+% INPUT:
 % I = the original image
-% trainingPoints = a binary array of ground truth points
+% TSP = a binary array of ground truth points
+% OUTPUT:
+% svm = trained support vector machine
+% trainingFeatures = collection of feature values
+% trainingLabels = positive and negative labels for trainingFeatures
+
+function [svm, trainingFeatures, trainingLabels] = trainSVM(I, TSP)
 trainingFeatures = [];
 nonFeatures = [];
 sz = size(I);

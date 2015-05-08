@@ -1,3 +1,5 @@
+%DNI
+
 function [svm, trainingFeatures, trainingLabels] = trainSVM2(I, true_set, false_set)
 
 trainingFeatures = extractFeatures2(I, true_set);

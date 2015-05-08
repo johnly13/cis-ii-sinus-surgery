@@ -1,4 +1,10 @@
-% filter smoothness image, run after calcSmoothness.m
+% filterSmoothness.m
+% Filter input to eliminate values below the threshold
+% INPUT:
+% s = smoothness map
+% thresh = threshold
+% OUTPUT:
+% fs = filtered smoothness map
 
 function fs = filterSmoothness(s, thresh)
     fs = s;

@@ -1,3 +1,5 @@
+% DNI
+
 scale = 25;
 G4 = imresize(I, 1/scale);
 G4 = imgradient(G4);

@@ -1,8 +1,14 @@
-function [features, points] = extractFeaturesHist(I, points)
-% Extracts a set of features from an image at the given points
+% extractFeaturesHist.m
+% Extracts histogram feature from pixel using a circular mask
+% INPUT:
 % I = the given RGB image
 % points = a binary array that signifies which points in I to extract
 % features from
+% OUTPUT:
+% features = matrix of histogram values
+% points = edge points that were calculated
+
+function [features, points] = extractFeaturesHist(I, points)
 
 if nargin == 1
     % If no points given, use results of our edge detection algorithm as points

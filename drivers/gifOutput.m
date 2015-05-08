@@ -1,3 +1,6 @@
+% gifOoutput.m
+% Creates an animated gif of sequential frames
+
 imageHeader = 'rec-000098';
 imageType = '.bmp';
 outputHeader = fullfile('output');

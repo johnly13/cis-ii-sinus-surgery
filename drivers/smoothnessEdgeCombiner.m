@@ -1,3 +1,6 @@
+% smoothnessEdgeCombiner.m
+% Optical flow driver
+
 close all;
 
 %File name constants

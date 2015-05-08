@@ -1,3 +1,6 @@
+% postTrainingAll.m
+% Post processing and image morphology operators to distinguish binary edges
+
 close all;
 warning('off','all');
 tic;

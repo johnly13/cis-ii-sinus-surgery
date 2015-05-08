@@ -1,9 +1,14 @@
-function [features, points] = extractFeatures(I, points)
+% extractFeatures.m
 % Extracts a set of features from an image at the given points
+% INPUT:
 % I = the given image
 % points = a binary array that signifies which points in I to extract
 % features from
-
+% OUTPUT:
+% features = feature vector for SVM
+% points = a binary array that signifies where the feature vectors come
+% from
+function [features, points] = extractFeatures(I, points)
 if nargin == 1
     % If no points given, use results of our edge detection algorithm as points
     filter = fspecial('gaussian', 20, 4);

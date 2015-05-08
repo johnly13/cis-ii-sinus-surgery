@@ -1,3 +1,17 @@
+% findEdges.m
+% Performs preprocessing and built in MATLAB edge detection
+% INPUT:
+% I = image
+% lowPassFactor = low intensity pixel threshold
+% highPassFactor = high intensity pixel threshold
+% boost = overall image intensity boost
+% filter = preprocessing filter for image
+% thresh = edge detection threshold
+% sigma = edge detection sigma
+% edgeType = name of edge detection to be used
+% OUTPUT:
+% edges = binary edge map
+
 function edges = findEdges(I, lowPassFactor, highPassFactor, boost, ...
     filter, thresh, sigma, edgeType)
 

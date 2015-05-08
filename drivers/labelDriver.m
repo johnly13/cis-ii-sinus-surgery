@@ -1,4 +1,6 @@
-%Calvin Driver
+% labelDriver.m
+% Exports basic edge detection images
+
 close;
 imageHeader = 'rec-000098';
 imageType = '.bmp';
